@@ -1,7 +1,7 @@
 //Standard React Stuff
 import './App.css';
-import React from "react"; 
-import { useEffect, useState } from "React"; 
+import React from 'react'; 
+import { useEffect, useState } from "react"; 
 
 //Importing the router
 import { createBrowserRouter, RouterProvider } from "react-router-dom"; 
@@ -26,33 +26,19 @@ const firebaseConfig = {
   appId: "1:1062910567996:web:9b339941106c9872208539"
 };
 
-//Creating our paths for our pages
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <UserProfile />,
-  },
-  {
-    path: "/login",
-    element: <LoginPage />
-  },
-  {
-    path: "/create",
-    element: <CreatePage /> 
-  },
-]);
 
 function App() {
-  //Making sure we initalize firebase one time
   const [appInitialized, setAppInitalized] = useState (false);
   //Checking if the information is loading, user is logged in, and we get user info
   const [isLoading, setIsLoading] = useState (true);
   const [isLoggedIn, setIsLoggedIn] = useState (false);
   const [userInfo, setUserInfo] = useState ({});
 
+  //Ensuring we initalize firebase one time (and not everytime the browser renders)
   useEffect(()=> {
     //Initalize firebase
     initializeApp(firebaseConfig);
+    //Set the state to true
     setAppInitalized(true);
   }, []); 
 
@@ -78,19 +64,49 @@ function App() {
         //Finished loading 
         setIsLoading(false);
 
-      })
+      });
     }
     //If not, skip it
-
+    //appInitalized (If that state equals true)
   }, [appInitialized]); 
+
+  console.log({userInfo}); 
+
+//Creating our paths for our pages 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <UserProfile 
+      isLoggedIn = {isLoggedIn}
+      setIsLoggedIn = {setIsLoggedIn}
+      isLoading = {isLoading}
+      userInfo = {userInfo} 
+      />,
+  },
+  {
+    path: "/login",
+    element: <LoginPage 
+      isLoggedIn = {isLoggedIn}
+      setIsLoggedIn = {setIsLoggedIn}
+      setUserInfo = {userInfo}
+      />
+  },
+  {
+    path: "/create",
+    element: (
+      <CreatePage
+        isLoggedIn = {isLoggedIn}
+        setIsLoggedIn = {setIsLoggedIn} 
+        setUserInfo = {setUserInfo} 
+      /> 
+    )
+  },
+]);
 
   return (
     <div className="App">
-      <Header />
       {/*Using react router in the browser*/}
       <RouterProvider router={router} />
-  
-     
     </div>
   );
 }

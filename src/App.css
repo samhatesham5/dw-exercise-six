@@ -2,7 +2,11 @@
   margin: 0;
   box-sizing: border-box;
 }
+/*
 
+--Styling Header
+
+*/
 nav {
   display: flex;
   justify-content: flex-end;
@@ -20,6 +24,12 @@ nav  p {
 
 a:visited{
   color: black; 
+}
+
+.signOut {
+  color: black;
+  text-decoration: underline;
+ 
 }
 
 /*
