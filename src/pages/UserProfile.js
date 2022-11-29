@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import Header from '../components/Header';
 
@@ -10,11 +10,13 @@ function UserProfile( { isLoggedIn, isLoading, userInfo, setIsLoggedIn, setUserI
         //So, if we're signed in, we'll go to userProfile (which is home)
         if (!isLoggedIn && !isLoading) return navigate('/login'); 
 
-    }, [isLoggedIn, isLoading]); 
+
+    },  [isLoggedIn, isLoading, navigate]); 
+    {/*If a dependency is being used/called, you need to put it in your array */}
 
     return (
     <React.Fragment>
-        <Header setIsLoggedIn= {setIsLoggedIn} setUserInfo = {setUserInfo}/>
+        <Header isLoggedIn = {isLoggedIn} setIsLoggedIn= {setIsLoggedIn} setUserInfo = {setUserInfo}/>
          <div>  
             <h1> User Profile </h1>
             <p>

@@ -10,7 +10,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CreatePage from './pages/CreatePage.js';
 import LoginPage from './pages/LoginPage.js';
 import UserProfile from './pages/UserProfile.js';
-import Header from './components/Header.js';
 
 //Initalize firebase
 import { initializeApp } from "firebase/app"; 

@@ -1,11 +1,12 @@
 import React from "react";
 
-function LoginForm(){
+function LoginForm({loginUser}){
     return (
-        <form className="FormElement">
+        //e represents this whole form (we pass the entire form, as e, into our function)
+        <form className="FormElement" onSubmit={(e) => loginUser(e)}>
             {/*UserName label*/}
             <label htmlFor="email">Email</label>
-            <input type="email" name="email"/>
+            <input type="text" name="email"/>
             {/*Password label*/}
             <label htmlFor="password">Password</label>
             <input type="password" name="password"/> 

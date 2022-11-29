@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router';
 import CreateUserForm from '../components/CreateUserForm';
 import Header from '../components/Header';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"; 
-import App from '../App';
 
 function CreatePage({setIsLoggedIn, setUserInfo, isLoggedIn}){
     //
@@ -15,7 +14,7 @@ function CreatePage({setIsLoggedIn, setUserInfo, isLoggedIn}){
         //So, if we're signed in, we'll go to userProfile (which is home)
         if (isLoggedIn) return navigate('/'); 
 
-    }, [isLoggedIn]); 
+    }, [isLoggedIn, navigate]); 
 
     const signUpUser = useCallback(
         //You can "e" what you want but it's an argument placeholder
@@ -54,12 +53,11 @@ function CreatePage({setIsLoggedIn, setUserInfo, isLoggedIn}){
                 console.warn({error, errorCode, errorMessage}); 
                 setErrors(errorMessage); 
             });
-        }, [setErrors, setIsLoggedIn, setUserInfo]
-    );
+        }, [setErrors, setIsLoggedIn, setUserInfo]);
     return (
         <React.Fragment>
             {/* React Fragment serves as a kind of parent container so we can add Header inside*/}
-            <Header setIsLoggedIn= {setIsLoggedIn} setUserInfo = {setUserInfo}/>
+            <Header isLoggedIn= {isLoggedIn} setIsLoggedIn= {setIsLoggedIn} setUserInfo = {setUserInfo}/>
             <div className='PageWrapper'>
                 <h1>Create Page</h1>
                 <CreateUserForm signUpUser = {signUpUser} />

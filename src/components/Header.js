@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 
 //Creating our nav bar
-function Header({setIsLoggedIn, setUserInfo}){
+function Header({ isLoggedIn, setIsLoggedIn, setUserInfo}){
     function logout(){
         const auth = getAuth();
             signOut(auth)
@@ -21,16 +21,17 @@ function Header({setIsLoggedIn, setUserInfo}){
 
         <nav>
             {/*Link - Comes from React Router; faster way of navigating through links */}
-            <Link to= "/">
+            {/* if isLoggedIn is true, have that link nav appear*/}
+            {isLoggedIn &&<Link to= "/">
                 <p>Home</p>
-            </Link>
-            <Link to="/login">
+            </Link>}
+            {!isLoggedIn && <Link to="/login">
                 <p>Login</p>
-            </Link>
-            <Link to="/create">
+            </Link>}
+            {!isLoggedIn && <Link to="/create">
                 <p>Sign up</p>
-            </Link>
-            <p className="signOut" onClick={() => logout()}>Sign Out</p>
+            </Link>}
+            {isLoggedIn && <p className="signOut" onClick={() => logout()}>Sign Out</p>}
         </nav>
     );
 }
