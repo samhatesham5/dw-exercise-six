@@ -12,7 +12,6 @@ function UserProfile( { isLoggedIn, isLoading, userInfo, setIsLoggedIn, setUserI
 
 
     },  [isLoggedIn, isLoading, navigate]); 
-    {/*If a dependency is being used/called, you need to put it in your array */}
 
     return (
     <React.Fragment>

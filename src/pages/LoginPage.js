@@ -7,8 +7,8 @@ import Header from '../components/Header';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"; 
 
 function LoginPage({ isLoggedIn, setIsLoggedIn, setUserInfo }) {
-    const [errors, setErrors] = useState(); 
     const navigate = useNavigate(); 
+    const [setErrors] = useState(); 
         
     useEffect(()=> {
         //So, if we're signed in, we'll go to userProfile (which is home)

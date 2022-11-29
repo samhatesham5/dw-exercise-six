@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"; 
 
 function CreatePage({setIsLoggedIn, setUserInfo, isLoggedIn}){
-    //
+
     const [errors, setErrors] = useState(); 
 
     const navigate = useNavigate(); 

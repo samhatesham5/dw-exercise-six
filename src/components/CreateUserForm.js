@@ -1,5 +1,4 @@
 import React from "react";
-import CreatePage from "../pages/CreatePage";
 
 function CreateUserForm({ signUpUser }){
     return (
